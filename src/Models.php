@@ -10,14 +10,8 @@ namespace Picory\Dynamodel;
 
 use Picory\Dynamodel\Database\DatabaseInstance;
 use Picory\Dynamodel\Queries\Query;
-use Picory\Dynamodel\Queries\QueryFields;
-use Picory\Dynamodel\Queries\QueryWhere;
-use Picory\Dynamodel\Queries\QueryCount;
-use Picory\Dynamodel\Queries\QueryOrderby;
-use Picory\Dynamodel\Queries\QueryGroupby;
-use Picory\Dynamodel\Queries\QueryLimit;
 
-class Models
+class Models extends ModelsAbstract
 {
     public $model = null;
 
@@ -34,17 +28,17 @@ class Models
         $this->connect();
 
         if ($this->model->where || $this->model->whereIn) {
-            QueryWhere::set($this->db, $this->model);
+            $this->where($this->db, $this->model);
         }
 
         // 카운트
         if ($this->model->count) {
-            $rows['total'] = QueryCount::get($this->db, $this->model);
+            $rows['total'] = $this->count($this->db, $this->model);
         }
 
-        QueryFields::set($this->db, $this->model, $params);
-        QueryOrderby::set($this->db, $this->model);
-        QueryLimit::set($this->db, $params);
+        $this->fields($this->db, $params);
+        $this->orderby($this->db, $this->model);
+        $this->take($this->db, $params);
 
         $rows['data'] = $this->db->get();
 

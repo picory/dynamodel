@@ -11,10 +11,9 @@ namespace Picory\Dynamodel\Queries;
 
 class QueryFields
 {
-    static function set($db, $model, $params)
+    static function set($db, $params)
     {
-        $model->setFields($params['fields']);
-        call_user_func(array($db, 'select'), $model->fields);
+        call_user_func(array($db, 'select'), $params['fields']);
     }
 
 }
