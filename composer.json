@@ -1,0 +1,29 @@
+{
+    "name": "picory/dynamodel",
+    "description": "Dynamic Model Helper",
+    "type": "library",
+    "authors": [
+        {
+            "name": "picory",
+            "email": "websniepr@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Picory\\Dynamodel\\DynamodelServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Picory\\Dynamodel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Picory\\Dynamodel\\Test\\": "tests"
+        }
+    }
+}
