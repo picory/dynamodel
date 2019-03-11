@@ -9,14 +9,16 @@
 namespace Picory\Dynamodel\Queries;
 
 
+use Picory\Dynamodel\DynaModel;
+
 class QueryOrderby
 {
-    static function set($db, $model)
+    static function set(DynaModel $model)
     {
-        if (count($model->orders) < 1) return;
+        if (count($model->orderby) < 1) return;
 
-        foreach ($model->orders as $orders) {
-            call_user_func_array(array($db, 'orderby'), $orders);
+        foreach ($model->orderby as $orders) {
+            call_user_func_array(array($model->db, 'orderby'), $orders);
         }
     }
 

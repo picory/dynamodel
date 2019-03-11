@@ -14,12 +14,12 @@ use Illuminate\Support\ServiceProvider;
 class DynamodelServiceProvider extends ServiceProvider
 {
   public function boot()
-  {
-
-  }
+  {}
 
   public function register()
   {
-
+      $this->app->bind('DynaModel', function () {
+          return new DynaModel;
+      });
   }
 }

@@ -8,13 +8,14 @@
 
 namespace Picory\Dynamodel\Queries;
 
+use Picory\Dynamodel\DynaModel;
 
 class QueryCount
 {
-    static function get($db, $model)
+    static function get(DynaModel $model)
     {
         if ($model->count) {
-            return $db->count();
+            return $model->db->count();
         }
     }
 

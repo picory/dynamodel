@@ -8,8 +8,12 @@
 
 namespace Picory\Dynamodel\Queries;
 
+use Picory\Dynamodel\DynaModel;
 
 class QuerySelect
 {
-
+    static function set(DynaModel $model, $params)
+    {
+        call_user_func(array($model->db, 'select'), $params['fields']);
+    }
 }
