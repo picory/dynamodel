@@ -13,6 +13,7 @@ use Picory\Dynamodel\Queries\QuerySelect;
 use Picory\Dynamodel\Queries\QueryCount;
 use Picory\Dynamodel\Queries\QueryWhere;
 use Picory\Dynamodel\Queries\QueryOrderby;
+use Picory\Dynamodel\Queries\QueryGroupby;
 use Picory\Dynamodel\Queries\QueryLimit;
 
 class DynaModel extends DynaAbstract
@@ -28,24 +29,31 @@ class DynaModel extends DynaAbstract
 
     public $db = null;
 
-    public function fetch(Array $params)
+    public function select(Array $params)
     {
         QueryWhere::set($this);
         $rows['count'] = QueryCount::get($this);
 
         QuerySelect::set($this, $params);
         QueryOrderby::set($this);
+        QueryGroupby::set($this);
         QueryLimit::set($this, $params);
         $rows['data'] = $this->db->get();
+
+        // echo $this->db->toSql();
 
         return $rows;
     }
 
-    public function insert($callFunc = '', Array $params)
-    {}
+    public function insert(Array $params)
+    {
+        return QueryInsert::set($this, $params);
+    }
 
-    public function insertById($callFunc = '', Array $params)
-    {}
+    public function insertGetId(Array $params)
+    {
+        return QueryInsert::get_id($this, $params);
+    }
 
     public function update($callFunc = '', Array $params)
     {}

@@ -8,7 +8,6 @@
 
 namespace Picory\Dynamodel\Queries;
 
-
 use Picory\Dynamodel\DynaModel;
 
 class QueryWhere
