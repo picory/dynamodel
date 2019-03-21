@@ -17,9 +17,5 @@ class DynamodelServiceProvider extends ServiceProvider
   {}
 
   public function register()
-  {
-      $this->app->bind('DynaModel', function () {
-          return new DynaModel;
-      });
-  }
+  {}
 }
